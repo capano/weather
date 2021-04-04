@@ -9,6 +9,15 @@ The latest version can always be found at http://github.com/capano/weather
 * PostgreSQL v9.6, 10, 11, 12 ou 13 
 * Python v2.6 - v2.7 ou v3.7
 
+## Considerações sobre o Projeto
+
+### Escolha do Framework
+
+Dois Frameworks se destacam para uso em Python, o Django que é o mais utilizado e o Flask, que é considerado um micro-framework.
+A escolha recaiu sobre o Flask devido a facilidade em importar suas funcionalidades e se encaixar na **** do projeto que é a simplicidade e tamanho reduzido.
+Além disso o Flask é satisfatório para desenvolvimento de APIs em Back-end.
+
+
 ## Códigos de erro
 
 ### O que pode dar de errado com o Weather ?

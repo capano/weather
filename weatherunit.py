@@ -14,7 +14,7 @@ def main():
 
 
     # request = requests.get('https://api.openweathermap.org/data/2.5/forecast?q={}&units=metric&appid=2d92472a453a1eebe622a647e2e4f882'.format(city_input))
-    request = requests.get('http://192.168.100.15:9000/weather/' + city_input)
+    # request = requests.get('http://192.168.100.15:9000/weather/' + city_input)
     # request = requests.get('http://191.19.147.14:9003/weather/' + city_input)
 
     # previsao&cidade=campinas

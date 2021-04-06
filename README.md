@@ -50,10 +50,20 @@ Se tudo estiver ok, um enorme código JSON devera aparecer. Bom, talvez apareça
 
 ### Como usar
 
-Para fazer uma consulta é necessário colocar o temo 'previsao' sem caracteres especiais, logo depois da ultima barra de endereço.
-A seguir digite a cidade logo após o segmento '&cidade='. Algumas cidades podem estar no idioma de origem, e com caracteres especiais ou espaços, como 'São Paulo' ou a potencialmente incrível cidade de 'Ayn Ḩalāqīm'.
-
+Para fazer uma consulta é necessário colocar o temo 'previsao' (sem caracteres especiais), logo depois da ultima barra de endereço.
+A seguir digite a cidade logo após o segmento '&cidade=' , como aí acima. 
+Algumas cidades podem estar no idioma de origem, e com caracteres especiais ou espaços, como 'São Paulo' ou a potencialmente incrível cidade de 'Ayn Ḩalāqīm'.
 Uma lista de todas cidades disponiveis para consulta da previsão do tempo no momento da elaboração deste programa, está em http://bulk.openweathermap.org/sample/city.list.json.gz .
+
+Cada consulta feita nesta API é armazenada no banco de dados e o histórico fica disponível para consulta.
+para fazê-lo basta trocar a chave "previsao" por "pesquisa" como nesse exemplo http://192.168.100.15:9000/weather/pesquisa&cidade=assis .
+como na consulta da previsão, é necessário especificar a cidade a ser pesquisada.
+Caso não exista um histórico da cidade digitada, retornará um erro 404 dizendo que não há registros para a cidade.
+
+Os principais erros foram tratados e já devolvem mensagem para o consumidor da API. Mas alguns podem quebrar o sistema e devolver erro no terminal, fazendo a aplicação terminar.
+
+
+
 https://openweathermap.org/weather-conditions
 
 ## Códigos de erro

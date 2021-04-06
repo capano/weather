@@ -23,7 +23,12 @@ Além disso o Flask é satisfatório para desenvolvimento de APIs em Back-end.
 
 O arquivo principal a ser usado é o weather.py
 Basta executar no python, cuidando antes para ter as bibliotecas necessárias. 
-Voce vai precisar da Requests, Flask, psycopg2 e json.
+Voce vai precisar de:
+
+* Requests
+* Flask
+* psycopg2 
+* json.
 
 ### Configurações
 

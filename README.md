@@ -63,6 +63,9 @@ Caso não exista um histórico da cidade digitada, retornará um erro 404 dizend
 Os principais erros foram tratados e já devolvem mensagem para o consumidor da API. Mas alguns podem quebrar o sistema e devolver erro no terminal, fazendo a aplicação terminar.
 
 
+## Considerações
+
+Alguma localização ainda falta na API, nem todos termos estão em nosso idioma, mas as unidades já estão no sistema métrico e Celsius.
 
 https://openweathermap.org/weather-conditions
 

@@ -37,10 +37,24 @@ Voce deve criar um DB no Postgres, conforme indicado na classe Config. Depois us
 
 ### Primeiros testes
 
-Quando rodar o programa ele fara listen da porta e IP configurado
-Se voce tiver outro computador numa rede interna que possua Pyton, poderá rodar o programa
+Quando rodar o programa ele fara listen da porta e IP configurado, de posse desses dados, pode testar de um destes modos:
+
+* Se voce tiver outro computador numa rede interna que possua Pyton, poderá rodar o programa weatherunit.py nele. 
+O programa faz o papel de navegador e pede para digitar a Key. Digite a chave 'previsao&cidade=blumenau' e enter.
+Se tudo estiver ok, um grande código JSON irá rolar pela tela e ela vai voltar para o ponto inicial pedindo uma Key de novo.
+
+* Um navegador como o Chrome também pode ser utilizado para o teste inicial, basta digitar algo como o seguinte: 
+http://192.168.100.15:9000/weather/previsao&cidade=blumenau , sendo que IP e a porta devem ser iguais ao que voce configurou.
+Se tudo estiver ok, um enorme código JSON devera aparecer. Bom, talvez apareça uma mensagem de erro caso a cidade digitada não exista no banco de dados ou esteja grafada de modo diferente.
 
 
+### Como usar
+
+Para fazer uma consulta é necessário colocar o temo 'previsao' sem caracteres especiais, logo depois da ultima barra de endereço.
+A seguir digite a cidade logo após o segmento '&cidade='. Algumas cidades podem estar no idioma de origem, e com caracteres especiais ou espaços, como 'São Paulo' ou a potencialmente incrível cidade de 'Ayn Ḩalāqīm'.
+
+Uma lista de todas cidades disponiveis para consulta da previsão do tempo no momento da elaboração deste programa, está em http://bulk.openweathermap.org/sample/city.list.json.gz .
+https://openweathermap.org/weather-conditions
 
 ## Códigos de erro
 

@@ -17,6 +17,30 @@ Dois Frameworks se destacam para uso em Python, o Django que é o mais utilizado
 A escolha recaiu sobre o Flask devido a facilidade em importar suas funcionalidades e se encaixar na **** do projeto que é a simplicidade e tamanho reduzido.
 Além disso o Flask é satisfatório para desenvolvimento de APIs em Back-end.
 
+## Instalação e uso
+
+### Arquivos e dependências
+
+O arquivo principal a ser usado é o weather.py
+Basta executar no python, cuidando antes para ter as bibliotecas necessárias. 
+Voce vai precisar da Requests, Flask, psycopg2 e json.
+
+### Configurações
+
+Edite os dados da classe Connect para um IP e porta que o servidor Web Python deverá usar.
+Depois insira os dados PostgreSQL na classe Config.
+Sim estes dados não deveriam está no código, mas essa ainda não é a versão de produção, ok ? Então podemos agregar uma classe que pesque todos os dados em um lugar seguro depois.
+
+### Criando tabelas
+
+Voce deve criar um DB no Postgres, conforme indicado na classe Config. Depois use o Script weather.sql para criar a tabela.
+
+### Primeiros testes
+
+Quando rodar o programa ele fara listen da porta e IP configurado
+Se voce tiver outro computador numa rede interna que possua Pyton, poderá rodar o programa
+
+
 
 ## Códigos de erro
 

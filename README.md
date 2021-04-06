@@ -65,6 +65,8 @@ para fazê-lo basta trocar a chave "previsao" por "pesquisa" como nesse exemplo 
 como na consulta da previsão, é necessário especificar a cidade a ser pesquisada.
 Caso não exista um histórico da cidade digitada, retornará um erro 404 dizendo que não há registros para a cidade.
 
+![alt text](https://github.com/capano/weather/blob/main/Figura_01.png)
+
 Os principais erros foram tratados e já devolvem mensagem para o consumidor da API. Mas alguns podem quebrar o sistema e devolver erro no terminal, fazendo a aplicação terminar.
 
 

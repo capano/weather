@@ -48,7 +48,6 @@ Postgres
 * host : IP do PostgreSQL
 * port : porta do Postgres. Por default é a 5432
 * database : Nome do DB aberto para criar a tabela weather
-*  
 
 
 ### Criando tabelas

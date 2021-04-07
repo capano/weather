@@ -36,6 +36,21 @@ Edite os dados da classe Connect para um IP e porta que o servidor Web Python de
 Depois insira os dados PostgreSQL na classe Config.
 Sim estes dados não deveriam está no código, mas essa ainda não é a versão de produção, ok ? Então podemos agregar uma classe que pesque todos os dados em um lugar seguro depois.
 
+Connect:
+* host : IP da maquina onde o servidor WEB do projeto deve rodar. 
+* port : Número da porta que a API usará para receber e enviar as requisições e dados. Cerifique que o Firewall esteja configurado para não a bloquear
+* debug: False
+* url e appid : endereço e key para a API Weather consultar outra API que fornecerá os dados meteorológicos.
+
+Postgres
+* user : nome de usuário do SGBD PostgreSQL
+* password : senha para conectar ao banco de dados
+* host : IP do PostgreSQL
+* port : porta do Postgres. Por default é a 5432
+* database : Nome do DB aberto para criar a tabela weather
+*  
+
+
 ### Criando tabelas
 
 Voce deve criar um DB no Postgres, conforme indicado na classe Config. Depois use o Script weather.sql para criar a tabela.

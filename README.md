@@ -82,7 +82,7 @@ Para interpretar alguns dados como condições de clima, há uma tabela de refer
 ## Códigos de erro
 
 ### O que pode dar de errado com o Weather ?
-Os códigos de erro retornados pela API estão listados abaixo. Veja o exemplo :
+Alguns dos códigos de erro retornados pela API estão explicados abaixo. Veja o exemplo :
 
 
 ```

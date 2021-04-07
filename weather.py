@@ -204,7 +204,7 @@ def ok(i_consulta):
         #----------------------------------------------------
         elif i_funcao == "pesquisa":
             ret_query = w.search(i_cidade)
-            outfile = json.dumps(ret_query)                 # funcionava normal
+            outfile = json.dumps(ret_query)
             return outfile
 
         else:

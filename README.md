@@ -89,6 +89,7 @@ Os códigos de erro retornados pela API estão listados abaixo. Veja o exemplo :
 {"cod": 401, "message": "Invalid API key. Please see https://github.com/capano/weather for more info."}
 ```
 
+ - **401** : a chave de consulta foi digitada incorretamente 
  - **404** : sem registro para a cidade digitada ou cidade digitada incorretamente
  - **441** : não foi especifidado uma chave válida para o uso da API
  - **442** : a especificação da cidade está incorreta

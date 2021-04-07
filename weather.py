@@ -1,4 +1,4 @@
-# Weather API Python - by Capano Wagner - 2021
+# Weather API Python - by Capano Wagner - 2021  Versão DEV/UNIT TEST
 
 import requests
 from flask import Flask
@@ -125,12 +125,13 @@ class Weather(Connection):
 
         if data_qtd < 1:
             data = json.loads('{"cod": "404", "message": "sem registros para esta cidade"}')
-
-        if data:
-            output = json.dumps(data)                       # dump data
             return data
 
-        return "registro não encontrado"
+        if data:
+            output = json.dumps(data)  # dump data
+            return data
+
+        return "registro nao encontrado"
 
 
 w = Weather()
@@ -203,11 +204,11 @@ def ok(i_consulta):
         #----------------------------------------------------
         elif i_funcao == "pesquisa":
             ret_query = w.search(i_cidade)
-            outfile = json.dumps(ret_query)                  # funcionava normal
+            outfile = json.dumps(ret_query)                 # funcionava normal
             return outfile
 
         else:
-            i_error = 442                           # não especificado chave de pesquisa valida
+            i_error = 442                                   # não especificado chave de pesquisa valida
 
     #----------------------------------------------------
     #   NENSAGEM DE ERRO

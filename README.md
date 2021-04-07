@@ -14,7 +14,7 @@ The latest version can always be found at http://github.com/capano/weather
 ### Escolha do Framework
 
 Dois Frameworks se destacam para uso em Python, o Django que é o mais utilizado e o Flask, que é considerado um micro-framework.
-A escolha recaiu sobre o Flask devido a facilidade em importar suas funcionalidades e se encaixar na **** do projeto que é a simplicidade e tamanho reduzido.
+A escolha recaiu sobre o Flask devido a facilidade em importar suas funcionalidades e se encaixar no escopo do projeto que é a simplicidade e tamanho reduzido.
 Além disso o Flask é satisfatório para desenvolvimento de APIs em Back-end.
 
 ## Instalação e uso

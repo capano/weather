@@ -1,17 +1,15 @@
-## programa weather - Capano - 2021 - Versão DEV/UNIT TEST
-
+# Weather API Python - by Capano Wagner - 2021
 
 import requests
-# from flask import Flask, request, jsonify, json
 from flask import Flask
 import psycopg2 as db
 import json
 
 
 
-# ----------------------------------------------------
+#----------------------------------------------------
 #   CONNECTION
-# ----------------------------------------------------
+#----------------------------------------------------
 # Dados para conectar na API openweather + Endereço do servidor da API weather DEVEM ESTAR EM ARQUIVO
 class Connect:
     host = "192.168.100.15"
@@ -20,9 +18,9 @@ class Connect:
     url = "https://api.openweathermap.org/data/2.5/forecast"
     appid = "2d92472a453a1eebe622a647e2e4f882"
 
-# ----------------------------------------------------
+#----------------------------------------------------
 #   CONFIG
-# ----------------------------------------------------
+#----------------------------------------------------
 class Config:
     def __init__(self):
         self.config = {
@@ -35,9 +33,9 @@ class Config:
             }
         }
 
-# ----------------------------------------------------
+#----------------------------------------------------
 #   CONNECTION
-# ----------------------------------------------------
+#----------------------------------------------------
 class Connection(Config):
     def __init__(self):
         Config.__init__(self)
@@ -101,15 +99,7 @@ class Weather(Connection):
     #   SEARCH
     # ----------------------------------------------------
     def search(self, *args, type_s="name"):
-        # sql = "SELECT id,cidade,cast(cast(extract(epoch from created_at) as int) as text) "\
-        # "as created_at FROM weather WHERE cidade = %s"
 
-        # sql = ("SELECT json_agg(json_build_object('data_a',id,'data_b',cidade))"\
-        #        "  from weather WHERE cidade = %s")
-
-        # data_cnt = self.query(sql, args)
-        # if type_s == "id":
-        #     sql = "SELECT * FROM weather WHERE id = %s"
 
         sql = 'SELECT count(cidade) from weather WHERE cidade = %s '
         data = self.query(sql, args)
@@ -117,32 +107,6 @@ class Weather(Connection):
         data_cnt = data_cnz[0]
         data_qtd = int(data_cnt)
 
-        ## q_01
-        # sql = "SELECT json_agg(json_build_object('cod','200','message',0,'cnt'," \
-        # sql += str(data_cnt)      "15" \
-        #       ",'id',id,'created_at',cast(cast(extract(epoch from created_at) as int) as text)," \
-        #       "'cidade','Campinas','list',info -> 'list' )) FROM weather WHERE cidade = %s"
-
-        ## q_02
-        # sql = "SELECT json_agg(json_build_object('cod','200','message',0,'cnt'," \
-        #       + str(data_cnt) + ",'id', id , 'created_at',cast(cast(extract(epoch from created_at)" \
-        #                         " as int) as text)," \
-        #      "'cidade','Campinas','list',info -> 'list' )) FROM weather WHERE cidade = %s"
-
-        ## q_03 esse traz a lista OK
-        # sql = "SELECT json_agg(json_build_object('db_id', id , " \
-        #       "'created_at',cast(cast(extract(epoch from created_at)" \
-        #        " as int) as text),'list',info -> 'list' )) FROM weather WHERE cidade = %s"
-
-        ## q_04 esse veio do postgreSQL
-        # i_a = "SELECT json_agg(json_build_object('cod', '200', 'message', 0, 'cnt', 15," \
-        #       " 'id', id, 'created_at', cast(cast(extract(epoch from created_at) as int) as text)," \
-        #       " 'cidade', 'Campinas', 'list', info -> 'list' )) from weather where cidade = 'Campinas'"
-
-        ## q_05 query OK - já com dois param
-        # sql = "SELECT json_agg(json_build_object('cod','200','message',0,'db_id', id , 'cnt', " \
-        #       + str(data_cnt) + ",'created_at',cast(cast(extract(epoch from created_at)" \
-        #       " as int) as text),'cidade', %s,'list',info -> 'list' )) FROM weather WHERE cidade = %s"
 
         ## q_06 query OK - =5 + ELEMENTOS REMOVIDOS
         sql = "SELECT json_agg(json_build_object('db_id', id , " \
@@ -150,48 +114,21 @@ class Weather(Connection):
               " as int) as text),'list',info -> 'list' )) FROM weather WHERE cidade = %s"
 
 
-        print(sql)                                          # TESTE
+        # print(sql)                                          # TESTE
         data = self.query(sql, args)
         data_cnz = data[0]                                  # TESTE
         # data = data_cnz                                     # TESTE
         data_cny = data_cnz[0]                                  # TESTE
         data = data_cny                                     # TESTE
-        # data_cnt = data_cnz[0]                              # TESTE
 
-        # data.insert()
-        # print (data_qtd)
 
         if data_qtd < 1:
             data = json.loads('{"cod": "404", "message": "sem registros para esta cidade"}')
 
         if data:
-            # ----------------------------------------------------
-            print("---->")
-
             output = json.dumps(data)                       # dump data
-            print('output type: ' + str(type(output)))
-            print('output : ')
-            # print(output)
-            print('data type: ' + str(type(data)))
-            print('data : ')
-            print(data)
-
-            print("<-------")
-            # ----------------------------------------------------
-
-            # ----------------------------------------------------
-            # alteração nos dados
-
-            # i_data_insert = '"'cod':'200'"'
-            # i_data_insert = "'cod':'200'"
-            # i_data_insert = "'cod':'200','message': 0 ,'cidade':'capkian27'"
-            # data.insert(0, i_data_insert)
-            # data.pop(1)
-
-            # return output
-            # ----------------------------------------------------
-
             return data
+
         return "registro não encontrado"
 
 
@@ -206,11 +143,8 @@ def ok(i_consulta):
     # ----------------------------------------------------
     #   CONSULTA
     # ----------------------------------------------------
-    print(i_consulta)                               # teste
-    print(Connect.host)                                # teste
     i_error = 0
     i_key_func = i_consulta.rsplit("&")
-    print(i_key_func)                                     # teste
     if len(i_key_func) > 1:
         i_key_cidade = i_key_func[1].rsplit("=")
         i_cidade = i_key_cidade[1]
@@ -218,7 +152,6 @@ def ok(i_consulta):
         i_funcao = i_key_func[0]
         i_funcao = i_funcao.casefold()
 
-        print(i_key_cidade)                                # teste
         if i_key_cidade[0] != "cidade":
             i_error = 445                               #erro na chave de pesquisa de cidade
 
@@ -235,13 +168,10 @@ def ok(i_consulta):
             i_request += "?q="+i_cidade
             i_request += '&units=metric'
             i_request += "&appid="+Connect.appid
-            # request = requests.get('https://api.openweathermap.org/data/2.5/forecast?q=London&units=metric&appid=2d92472a453a1eebe622a647e2e4f882')
             request = requests.get(i_request)
             return_data = request.json()                    # dict Py
             i_code = return_data["cod"]
             return_code = json.dumps(return_data, indent=4)  # transforma em JSON
-            # outfile = open("sample.json", "w")
-            # json.dump(return_data, outfile)
             outfile = json.dumps(return_data)               # JSON plano
 
             # Print test area -------------                 # TEST AREA
@@ -263,7 +193,7 @@ def ok(i_consulta):
             if i_code == "200":
                 w.insert(i_cidade,outfile)
                 return outfile
-                # return return_data
+
             else:
                 i_error = int(i_code)
 
@@ -272,20 +202,9 @@ def ok(i_consulta):
         # ----------------------------------------------------
         elif i_funcao == "pesquisa":
             ret_query = w.search(i_cidade)
-            # print(ret_query)
-            # print(json.dumps(ret_query, indent=4))
-            # return '{ "PESQUISA": "Lily Bush", "items": {"product": "Diaper","qty": 24}}'
-            # return json.dumps(ret_query, indent=4)
             outfile = json.dumps(ret_query)                  # funcionava normal
-
-            # ----------------------------------------------------
-            i_s1 = '======================================= '
-            print(i_s1 + 'outfile\n' )
-            print(type(outfile))
-            print(outfile)
-            print(i_s1 + 'outfile\n')
-            # ----------------------------------------------------
             return outfile
+
         else:
             i_error = 442                           # não especificado chave de pesquisa valida
 

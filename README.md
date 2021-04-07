@@ -63,12 +63,15 @@ Uma lista de todas cidades disponiveis para consulta da previsão do tempo no mo
 Cada consulta feita nesta API é armazenada no banco de dados e o histórico fica disponível para consulta.
 para fazê-lo basta trocar a chave "previsao" por "pesquisa" como nesse exemplo http://192.168.100.15:9000/weather/pesquisa&cidade=assis .
 como na consulta da previsão, é necessário especificar a cidade a ser pesquisada.
-Caso não exista um histórico da cidade digitada, retornará um erro 404 dizendo que não há registros para a cidade.
+Caso não exista um histórico da cidade digitada, retornará um erro 404 dizendo que não há registros para a cidade, como na figura abaixo.
 
 ![alt text](https://github.com/capano/weather/blob/main/Figura_01.png)
 
 Os principais erros foram tratados e já devolvem mensagem para o consumidor da API. Mas alguns podem quebrar o sistema e devolver erro no terminal, fazendo a aplicação terminar.
 
+O arquivo que a API devolve para o consumo está no formato JSON. Foi utilizada a ferramenta da http://jsonviewer.stack.hu/ para checar a compatibilidade. Alguns detalhes de formatação ainda estão sendo corrigidos. Abaixo um print da ferramenta exibindo uma parte do JSON enviado pela API:
+
+![alt text](https://github.com/capano/weather/blob/main/Figura_02.png)
 
 ## Considerações
 

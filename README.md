@@ -69,15 +69,15 @@ Caso não exista um histórico da cidade digitada, retornará um erro 404 dizend
 
 Os principais erros foram tratados e já devolvem mensagem para o consumidor da API. Mas alguns podem quebrar o sistema e devolver erro no terminal, fazendo a aplicação terminar.
 
-O arquivo que a API devolve para o consumo está no formato JSON. Foi utilizada a ferramenta da http://jsonviewer.stack.hu/ para checar a compatibilidade. Alguns detalhes de formatação ainda estão sendo corrigidos. Abaixo um print da ferramenta exibindo uma parte do JSON enviado pela API:
+O arquivo que a API devolve para o consumo está no formato JSON. Foi utilizada a ferramenta da http://jsonviewer.stack.hu/ para checar a compatibilidade. Alguns detalhes de formatação da parte de pesquisa ainda estão sendo corrigidos. Abaixo um print da ferramenta exibindo uma parte do JSON de  previsão devolvido pela API:
+
 
 ![alt text](https://github.com/capano/weather/blob/main/Figura_02.png)
 
 ## Considerações
 
 Alguma localização ainda falta na API, nem todos termos estão em nosso idioma, mas as unidades já estão no sistema métrico e Celsius.
-
-https://openweathermap.org/weather-conditions
+Para interpretar alguns dados como condições de clima, há uma tabela de referência disponível em https://openweathermap.org/weather-conditions
 
 ## Códigos de erro
 
@@ -89,9 +89,10 @@ Os códigos de erro retornados pela API estão listados abaixo. Veja o exemplo :
 {"cod": 401, "message": "Invalid API key. Please see https://github.com/capano/weather for more info."}
 ```
 
-
+ - **404** : sem registro para a cidade digitada ou cidade digitada incorretamente
  - **441** : não foi especifidado uma chave válida para o uso da API
  - **442** : a especificação da cidade está incorreta
+ 
 
 #
 

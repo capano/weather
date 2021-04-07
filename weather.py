@@ -5,12 +5,12 @@ from flask import Flask
 import psycopg2 as db
 import json
 
-
-
 #----------------------------------------------------
 #   CONNECTION
 #----------------------------------------------------
 # Dados para conectar na API openweather + Endereço do servidor da API weather DEVEM ESTAR EM ARQUIVO
+
+
 class Connect:
     host = "192.168.100.15"
     port = "9000"
@@ -21,6 +21,8 @@ class Connect:
 #----------------------------------------------------
 #   CONFIG
 #----------------------------------------------------
+
+
 class Config:
     def __init__(self):
         self.config = {
@@ -36,6 +38,8 @@ class Config:
 #----------------------------------------------------
 #   CONNECTION
 #----------------------------------------------------
+
+
 class Connection(Config):
     def __init__(self):
         Config.__init__(self)
@@ -84,9 +88,10 @@ class Weather(Connection):
     def __init__(self):
         Connection.__init__(self)
 
-    # ----------------------------------------------------
+    #----------------------------------------------------
     #   INSERT
-    # ----------------------------------------------------
+    #----------------------------------------------------
+
     def insert(self, *args):
         try:
             sql = "INSERT INTO weather (cidade,info) VALUES (%s,%s)"
@@ -95,32 +100,28 @@ class Weather(Connection):
         except Exception as e:
             print("Erro de inserção", e)
 
-    # ----------------------------------------------------
+    #----------------------------------------------------
     #   SEARCH
-    # ----------------------------------------------------
+    #----------------------------------------------------
+
     def search(self, *args, type_s="name"):
-
-
         sql = 'SELECT count(cidade) from weather WHERE cidade = %s '
         data = self.query(sql, args)
         data_cnz = data[0]
         data_cnt = data_cnz[0]
         data_qtd = int(data_cnt)
 
-
-        ## q_06 query OK - =5 + ELEMENTOS REMOVIDOS
+        # q_06 query OK - =5 + ELEMENTOS REMOVIDOS
         sql = "SELECT json_agg(json_build_object('db_id', id , " \
               "'created_at',cast(cast(extract(epoch from created_at)" \
               " as int) as text),'list',info -> 'list' )) FROM weather WHERE cidade = %s"
 
-
-        # print(sql)                                          # TESTE
+        # print(sql)                                        # TESTE
         data = self.query(sql, args)
         data_cnz = data[0]                                  # TESTE
-        # data = data_cnz                                     # TESTE
-        data_cny = data_cnz[0]                                  # TESTE
+        # data = data_cnz                                   # TESTE
+        data_cny = data_cnz[0]                              # TESTE
         data = data_cny                                     # TESTE
-
 
         if data_qtd < 1:
             data = json.loads('{"cod": "404", "message": "sem registros para esta cidade"}')
@@ -132,7 +133,7 @@ class Weather(Connection):
         return "registro não encontrado"
 
 
-w=Weather()
+w = Weather()
 # Consulta
 app = Flask(__name__)
 
@@ -140,9 +141,9 @@ app = Flask(__name__)
 @app.route("/weather/<i_consulta>")
 def ok(i_consulta):
 
-    # ----------------------------------------------------
+    #----------------------------------------------------
     #   CONSULTA
-    # ----------------------------------------------------
+    #----------------------------------------------------
     i_error = 0
     i_key_func = i_consulta.rsplit("&")
     if len(i_key_func) > 1:
@@ -153,16 +154,16 @@ def ok(i_consulta):
         i_funcao = i_funcao.casefold()
 
         if i_key_cidade[0] != "cidade":
-            i_error = 445                               #erro na chave de pesquisa de cidade
+            i_error = 445                                   #erro na chave de pesquisa de cidade
 
     else:
-        i_error = 443                                   #não especificado chave cidade
+        i_error = 443                                       #não especificado chave cidade
 
     if i_error == 0:
 
-        # ----------------------------------------------------
+        #----------------------------------------------------
         #   PREVISAO
-        # ----------------------------------------------------
+        #----------------------------------------------------
         if i_funcao == "previsao":
             i_request = Connect.url
             i_request += "?q="+i_cidade
@@ -191,15 +192,15 @@ def ok(i_consulta):
             # ----------------------------------------------------
 
             if i_code == "200":
-                w.insert(i_cidade,outfile)
+                w.insert(i_cidade, outfile)
                 return outfile
 
             else:
                 i_error = int(i_code)
 
-        # ----------------------------------------------------
+        #----------------------------------------------------
         #   PESQUISA
-        # ----------------------------------------------------
+        #----------------------------------------------------
         elif i_funcao == "pesquisa":
             ret_query = w.search(i_cidade)
             outfile = json.dumps(ret_query)                  # funcionava normal
@@ -208,12 +209,13 @@ def ok(i_consulta):
         else:
             i_error = 442                           # não especificado chave de pesquisa valida
 
-    # ----------------------------------------------------
+    #----------------------------------------------------
     #   NENSAGEM DE ERRO
-    # ----------------------------------------------------
+    #----------------------------------------------------
     # mensagens de erro
     if i_error > 0:
-        return '{"cod": ' + str(i_error) + ', "message": "Invalid API key. Please see https://github.com/capano/weather for more info."}'
+        return '{"cod": ' + str(i_error) + ', "message": "Invalid API key. ' \
+                  'Please see https://github.com/capano/weather for more info."}'
 
 
 app.run(host=Connect.host, port=Connect.port, debug=Connect.debug)

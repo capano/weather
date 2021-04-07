@@ -1,4 +1,4 @@
-# Weather Python API
+# Weather Python API v0.91 07-abr-2021
 
 Weather é uma simples API desenvolvida em Python para acessar dados de previsão de tempo para 5 dias por cidade. Cada consulta que retorne dados válidos os grava em histórico para consulta .
 

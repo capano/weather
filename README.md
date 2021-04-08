@@ -22,8 +22,8 @@ Além disso o Flask é satisfatório para desenvolvimento de APIs em Back-end.
 
 ### Arquivos e dependências
 
-O arquivo principal e que armazena todo o código da API é o weather.py
-Basta executar no python, cuidando antes para ter as bibliotecas necessárias. 
+O arquivo principal e que armazena todo o código da API é o weather.py. 
+Basta executá-lo no Python, tomando o cuidando de estar com todas as bibliotecas necessárias instaladas. 
 Voce vai precisar de:
 
 * Requests

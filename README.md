@@ -1,6 +1,7 @@
 # Weather Python API (v0.91 05-abr-2021)
 
-Weather é uma simples API desenvolvida em Python para acessar dados de previsão de tempo para 5 dias por cidade. Cada consulta que retorne dados válidos os grava em histórico para consulta .
+Weather é uma simples API desenvolvida em Python para acessar dados de previsão de tempo de 5 dias para a cidade escolhida. Cada consulta que retorne dados válidos irá grava-los em um histórico para posterior consulta .
+Estes dados serão armazenados em uma tabela no PostgreSQL.
 
 The latest version can always be found at http://github.com/capano/weather
 
